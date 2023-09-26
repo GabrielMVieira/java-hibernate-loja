@@ -1,0 +1,37 @@
+# Diretórios e arquivos específicos do Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Diretórios e arquivos específicos do IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+.idea/modules.xml
+.idea/workspace.xml
+
+# Diretórios e arquivos específicos do Eclipse
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# Diretórios e arquivos específicos do NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Diretório específico do Visual Studio Code
+.vscode/
+
+# Arquivos específicos do Mac OS
+.DS_Store
