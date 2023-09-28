@@ -1,5 +1,6 @@
 package br.com.jgmv.loja.testes;
 
+import br.com.jgmv.loja.dao.CategoriaDao;
 import br.com.jgmv.loja.dao.ProdutoDao;
 import br.com.jgmv.loja.modelo.Categoria;
 import br.com.jgmv.loja.modelo.Produto;
@@ -14,14 +15,17 @@ public class CadastroProduto {
 
     public static void main(String[] args) {
 
-        Produto celular = new Produto("Iphone 12", "Proteção IP68", new BigDecimal(4000), Categoria.CELULARES);
-
+        Categoria celulares = new Categoria("CELULARES");
+        Produto celular = new Produto("Iphone 12", "Proteção IP68", new BigDecimal(4000),celulares);
 
         EntityManager em = JPAUtil.getEntityManager();
-        ProdutoDao pd = new ProdutoDao(em);
         EntityTransaction transaction = em.getTransaction();
 
+        ProdutoDao pd = new ProdutoDao(em);
+        CategoriaDao cd = new CategoriaDao(em);
+
         transaction.begin();
+        cd.cadastrar(celulares);
         pd.cadastrar(celular);
         transaction.commit();
         em.close();
