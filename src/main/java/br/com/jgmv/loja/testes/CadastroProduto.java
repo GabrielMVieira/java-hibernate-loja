@@ -10,25 +10,43 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CadastroProduto {
 
     public static void main(String[] args) {
+        cadastrarProdutos();
+        EntityManager em = JPAUtil.getEntityManager();
+        ProdutoDao pd = new ProdutoDao(em);
+
+        Produto p = pd.buscarPorId(1l);
+        System.out.println(p.getPreco());
+
+        List<Produto> todos = pd.buscaPorNomeDaCategoria("CELULARES");
+        todos.forEach(todos1 -> System.out.println(todos1.getNome()));
+
+        BigDecimal precoProduto = pd.buscaPrecoProdutoPorNome("Iphone 13");
+        System.out.println("Preçoo do produto: " + precoProduto);
+    }
+
+    public static void cadastrarProdutos() {
 
         Categoria celulares = new Categoria("CELULARES");
-        Produto celular = new Produto("Iphone 12", "Proteção IP68", new BigDecimal(4000),celulares);
+
+        // Cria uma entidade transient
+        Produto celular = new Produto("Iphone 13", "Proteção IP68", new BigDecimal(4000), celulares);
 
         EntityManager em = JPAUtil.getEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         ProdutoDao pd = new ProdutoDao(em);
         CategoriaDao cd = new CategoriaDao(em);
 
-        transaction.begin();
+        em.getTransaction().begin();
         cd.cadastrar(celulares);
         pd.cadastrar(celular);
-        transaction.commit();
+        em.getTransaction().commit();
         em.close();
+
 
     }
 }
