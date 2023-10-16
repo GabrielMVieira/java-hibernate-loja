@@ -14,6 +14,8 @@ public class CategoriaDao {
     }
     public void cadastrar (Categoria categoria){
     public void cadastrar(Categoria categoria) {
+
+        //Associa a entidade ao contexto de persistência (move para o estado managed)
         this.em.persist(categoria);
     }
 
@@ -29,6 +31,7 @@ public class CategoriaDao {
     }
 
     public void remover(Categoria categoria) {
+        // Marca a entidade para remoção (move para o estado removed)
         categoria = this.em.merge(categoria);
         this.em.remove(categoria);
     }
