@@ -7,7 +7,6 @@ import br.com.jgmv.loja.modelo.Produto;
 import br.com.jgmv.loja.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,8 +19,6 @@ public class CadastroProduto {
         ProdutoDao pd = new ProdutoDao(em);
 
         Produto p = pd.buscarPorId(1l);
-        System.out.println(p.getPreco());
-
         List<Produto> todos = pd.buscaPorNomeDaCategoria("CELULARES");
         todos.forEach(todos1 -> System.out.println(todos1.getNome()));
 
