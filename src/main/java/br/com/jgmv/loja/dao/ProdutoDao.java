@@ -1,6 +1,5 @@
 package br.com.jgmv.loja.dao;
 
-import br.com.jgmv.loja.modelo.Categoria;
 import br.com.jgmv.loja.modelo.Produto;
 
 import javax.persistence.EntityManager;
@@ -57,5 +56,4 @@ public class ProdutoDao {
                 .setParameter(1,nome)
                 .getSingleResult();
     }
-
 }
